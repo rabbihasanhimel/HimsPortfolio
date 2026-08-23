@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rabbi Hasan Himel — Cybersecurity Scholar, CCNA Certified, Erasmus Mundus CyberMACS. Researcher, developer, and security practitioner based in Berlin." />
+  <title>Rabbi Hasan Himel | Cybersecurity</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0d0f12;--bg2:#13161b;--bg3:#1a1e25;--border:#232830;--accent:#4f8ef7;--accent2:#2dd4bf;--text:#e2e8f0;--muted:#8892a4;--mono:'JetBrains Mono',monospace;--sans:'Inter',sans-serif}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{color:var(--accent2)}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:58px;background:rgba(13,15,18,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .nav-brand{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.04em}
+    .nav-links{display:flex;gap:2rem}
+    .nav-links a{font-size:12.5px;font-family:var(--mono);color:var(--muted);letter-spacing:.05em;transition:color .2s}
+    .nav-links a:hover{color:var(--text)}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+    .hamburger span{display:block;width:22px;height:1.5px;background:var(--muted)}
+    .mobile-menu{display:none;flex-direction:column;gap:1rem;padding:1.5rem 2.5rem;background:var(--bg2);border-bottom:1px solid var(--border)}
+    .mobile-menu a{font-size:13px;font-family:var(--mono);color:var(--muted)}
+    .mobile-menu.open{display:flex}
+
+    .container{max-width:860px;margin:0 auto;padding:0 2rem}
+    section{padding:6rem 0}
+    section+section{border-top:1px solid var(--border)}
+
+    #home{min-height:100vh;display:flex;align-items:center;padding-top:58px}
+    .hero-eyebrow{font-family:var(--mono);font-size:12px;color:var(--accent2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.4rem}
+    .hero h1{font-size:clamp(2.4rem,6vw,4rem);font-weight:600;line-height:1.15;letter-spacing:-.02em;margin-bottom:1.4rem}
+    .hero h1 em{font-style:normal;color:var(--accent)}
+    .hero-desc{font-size:16px;color:var(--muted);max-width:520px;margin-bottom:2.4rem;line-height:1.75}
+    .hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn{font-family:var(--mono);font-size:12.5px;padding:.65rem 1.4rem;border-radius:4px;border:1px solid var(--accent);color:var(--accent);transition:all .2s;letter-spacing:.04em}
+    .btn:hover{background:var(--accent);color:var(--bg)}
+    .btn-ghost{border-color:var(--border);color:var(--muted)}
+    .btn-ghost:hover{border-color:var(--muted);color:var(--text);background:transparent}
+    .hero-pills{margin-top:3.5rem;display:flex;gap:.6rem;flex-wrap:wrap}
+    .pill{font-family:var(--mono);font-size:11px;padding:.28rem .8rem;border-radius:20px;border:1px solid var(--border);color:var(--muted);background:var(--bg2)}
+
+    .section-num{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+    .section-title{font-size:1.6rem;font-weight:600;letter-spacing:-.02em;margin-bottom:2.8rem;color:var(--text)}
+
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+    .about-text p{color:var(--muted);margin-bottom:1rem;font-size:15px;line-height:1.8}
+    .about-text p strong{color:var(--text)}
+    .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-content:start}
+    .stat-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem}
+    .stat-box .num{font-size:2rem;font-weight:600;color:var(--accent);font-family:var(--mono);line-height:1;margin-bottom:.3rem}
+    .stat-box .label{font-size:12px;color:var(--muted)}
+
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
+    .skill-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.4rem;transition:border-color .2s}
+    .skill-card:hover{border-color:var(--accent)}
+    .skill-card h4{font-size:12.5px;font-family:var(--mono);color:var(--accent2);margin-bottom:.8rem;letter-spacing:.04em}
+    .skill-card ul{list-style:none}
+    .skill-card ul li{font-size:13px;color:var(--muted);padding:.15rem 0}
+    .skill-card ul li::before{content:"↳ ";color:var(--border)}
+
+    .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+    .project-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.6rem;transition:border-color .2s,transform .2s;display:flex;flex-direction:column}
+    .project-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+    .project-tag{font-family:var(--mono);font-size:10px;color:var(--accent2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem}
+    .project-card h3{font-size:15px;font-weight:600;margin-bottom:.6rem;color:var(--text)}
+    .project-card p{font-size:13px;color:var(--muted);line-height:1.65;flex:1;margin-bottom:1.2rem}
+    .project-techs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}
+    .tech{font-family:var(--mono);font-size:10.5px;color:var(--muted);background:var(--bg3);border:1px solid var(--border);padding:.15rem .55rem;border-radius:3px}
+    .project-links{display:flex;gap:1rem}
+    .project-links a{font-family:var(--mono);font-size:11.5px;color:var(--accent)}
+    .project-links a:hover{color:var(--accent2)}
+
+    .exp-list{display:flex;flex-direction:column;gap:2.5rem}
+    .exp-item{display:grid;grid-template-columns:140px 1fr;gap:1.5rem}
+    .exp-date{font-family:var(--mono);font-size:11.5px;color:var(--muted);padding-top:.2rem;line-height:1.6}
+    .exp-company{font-size:15px;font-weight:600;color:var(--text);margin-bottom:.2rem}
+    .exp-role{font-family:var(--mono);font-size:12px;color:var(--accent);margin-bottom:.6rem}
+    .exp-desc{font-size:13.5px;color:var(--muted);line-height:1.7}
+    .exp-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.8rem}
+
+    .edu-list{display:flex;flex-direction:column;gap:1rem}
+    .edu-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start}
+    .edu-inst{font-size:15px;font-weight:600;color:var(--text);margin-bottom:.2rem}
+    .edu-deg{font-size:13px;color:var(--muted)}
+    .edu-date{font-family:var(--mono);font-size:11px;color:var(--accent2);white-space:nowrap;padding-top:.2rem}
+
+    .pub-list{display:flex;flex-direction:column;gap:1.4rem}
+    .pub-item{border-left:2px solid var(--accent);padding-left:1.2rem}
+    .pub-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:.3rem}
+    .pub-meta{font-size:12.5px;color:var(--muted);font-family:var(--mono)}
+    .pub-meta a{color:var(--accent2);font-size:12px}
+
+    .cert-list{display:flex;flex-direction:column;gap:1rem}
+    .cert-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem}
+    .cert-name{font-size:14px;font-weight:500;color:var(--text);margin-bottom:.2rem}
+    .cert-meta{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+    .cert-meta a{color:var(--accent2)}
+    .cert-badge{font-family:var(--mono);font-size:11px;padding:.3rem .8rem;border:1px solid var(--accent2);border-radius:20px;color:var(--accent2)}
+
+    .contact-box{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:3rem;text-align:center}
+    .contact-box h2{font-size:1.4rem;font-weight:600;margin-bottom:1rem}
+    .contact-box p{color:var(--muted);font-size:15px;max-width:420px;margin:0 auto 2rem}
+    .contact-email{font-family:var(--mono);font-size:15px;color:var(--accent);display:block;margin-bottom:2rem}
+    .contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+    footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+    @media(max-width:720px){
+      .nav-links{display:none}
+      .hamburger{display:flex}
+      .about-grid,.projects-grid{grid-template-columns:1fr}
+      .about-stats{grid-template-columns:1fr 1fr}
+      .exp-item{grid-template-columns:1fr;gap:.3rem}
+      .edu-item{grid-template-columns:1fr}
+      .contact-box{padding:2rem 1.2rem}
+      section{padding:4rem 0}
+    }
+
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">rabbi.dev</span>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#publications">Research</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="hamburger" onclick="document.getElementById('mm').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mm">
+  <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
+  <a href="#experience">Experience</a><a href="#education">Education</a>
+  <a href="#publications">Research</a><a href="#contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="container">
+    <div class="hero">
+      <p class="hero-eyebrow">Applied Cybersecurity / ML Research</p>
+      <h1>Rabbi Hasan<br/><em>Himel</em></h1>
+      <p class="hero-desc">Erasmus Mundus scholar in Applied Cybersecurity, CCNA certified, and published researcher in medical AI. I build secure systems, analyse threats, and bridge machine learning with cybersecurity.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn">Start a conversation</a>
+        <a href="#projects" class="btn btn-ghost">View Projects</a>
+        <a href="https://linkedin.com/in/rabbi-hasan-himel" target="_blank" class="btn btn-ghost">LinkedIn</a>
+        <a href="https://github.com/rabbihasanhimel" target="_blank" class="btn btn-ghost">GitHub</a>
+      </div>
+      <div class="hero-pills">
+        <span class="pill">📍 Berlin, Germany</span>
+        <span class="pill">🎓 EMJM CyberMACS</span>
+        <span class="pill">✅ CCNA Certified</span>
+        <span class="pill">📄 3 Publications</span>
+        <span class="pill">🔍 Open to Opportunities</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-num reveal">01</p>
+    <h2 class="section-title reveal">About</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I am a <strong>research-driven computer scientist</strong> and Erasmus Mundus scholar pursuing a Master's in Applied Cybersecurity through the <strong>CyberMACS joint programme</strong> — Year 1 at Kadir Has University (Istanbul), Year 2 at SRH Berlin.</p>
+        <p>My work sits at the intersection of <strong>cybersecurity, machine learning, and systems engineering</strong>. I have published three peer-reviewed papers applying CNN, VGG16, and ensemble models to medical diagnostics — and built a production RAG-based chatbot using LangChain and LLaMA 3.1.</p>
+        <p>I hold a <strong>full CCNA certification</strong>, hands-on SOC/SIEM experience (TryHackMe SOC Level 1), and practical industry exposure from internships at SIBEREUM and BTCL. I approach every system with a secure-by-default mindset.</p>
+        <p>Targeting roles in <strong>SOC analysis, cybersecurity consulting, and IT security engineering</strong> — based in Berlin from October 2026.</p>
+      </div>
+      <div class="about-stats reveal">
+        <div class="stat-box"><div class="num">3</div><div class="label">Peer-reviewed publications in medical AI</div></div>
+        <div class="stat-box"><div class="num">CCNA</div><div class="label">Cisco certified, May 2026 – 2029</div></div>
+        <div class="stat-box"><div class="num">SOC L1</div><div class="label">TryHackMe certified analyst</div></div>
+        <div class="stat-box"><div class="num">3.72</div><div class="label">BSc CGPA out of 4.00</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-num reveal">02</p>
+    <h2 class="section-title reveal">Capabilities</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal"><h4>IT Support & Networking</h4><ul><li>TCP/IP, DHCP, IPv4/IPv6, EIGRP</li><li>Windows & Linux Administration</li><li>Hardware/Software Troubleshooting</li><li>GPON, PBX, ICX Infrastructure</li><li>CCNA Certified</li></ul></div>
+      <div class="skill-card reveal"><h4>Security Operations</h4><ul><li>SIEM (Splunk, Elastic Stack)</li><li>Log Analysis & Alert Triage</li><li>Incident Response</li><li>MITRE ATT&CK, Cyber Kill Chain</li><li>Phishing Analysis, Threat Hunting</li></ul></div>
+      <div class="skill-card reveal"><h4>Cybersecurity & Compliance</h4><ul><li>ISMS Auditing, Risk Register</li><li>SoD Matrix, IAM</li><li>COBIT Framework</li><li>Compliance Auditing</li><li>Cyber Governance</li></ul></div>
+      <div class="skill-card reveal"><h4>Machine Learning & AI</h4><ul><li>CNN, ANN, VGG16, XAI, RAG</li><li>TensorFlow, Keras, Scikit-learn</li><li>LangChain, ChromaDB</li><li>Pandas, NumPy, Matplotlib</li><li>Medical Image Classification</li></ul></div>
+      <div class="skill-card reveal"><h4>Languages & Development</h4><ul><li>Python, PHP, C/C++</li><li>HTML/CSS, OpenGL</li><li>Git/GitHub</li><li>Oracle DB (OCI), MySQL</li><li>Selenium WebDriver</li></ul></div>
+      <div class="skill-card reveal"><h4>Tools & Platforms</h4><ul><li>Kali Linux, Wireshark</li><li>Streamlit, Groq API</li><li>Microsoft 365, LaTeX</li><li>ZTE ZSMART, OSS, CRM</li><li>Splunk Enterprise</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-num reveal">03</p>
+    <h2 class="section-title reveal">Selected Work</h2>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-tag">AI / LLM</div>
+        <h3>ChatbotPro – RAG Chatbot</h3>
+        <p>Retrieval-Augmented Generation pipeline with vector embeddings (FastEmbed), multi-query retrieval, and hallucination control. Context-aware Q&A over PDF knowledge bases via Groq's LLaMA 3.1.</p>
+        <div class="project-techs"><span class="tech">Python</span><span class="tech">LangChain</span><span class="tech">ChromaDB</span><span class="tech">Streamlit</span><span class="tech">LLaMA 3.1</span></div>
+        <div class="project-links"><a href="https://github.com/rabbihasanhimel/ChatbotPro" target="_blank">GitHub →</a></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-tag">QA / Automation</div>
+        <h3>Rokomari Website Testing</h3>
+        <p>Automated feature testing suite for the Rokomari e-commerce platform covering key user flows: search, login, navigation, and cart — ensuring functional reliability across releases.</p>
+        <div class="project-techs"><span class="tech">Selenium WebDriver</span><span class="tech">Python</span><span class="tech">Test Automation</span></div>
+        <div class="project-links"><a href="https://github.com/rabbihasanhimel/Rokomari-website--Feature-Testing" target="_blank">GitHub →</a></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-tag">Full Stack / Database</div>
+        <h3>Garments Factory Management</h3>
+        <p>Web-based system for a garments factory with employee records, inventory tracking, stock management, and sales — connected to Oracle DB via OCI for full CRUD functionality.</p>
+        <div class="project-techs"><span class="tech">PHP</span><span class="tech">Oracle DB</span><span class="tech">OCI</span><span class="tech">CSS</span></div>
+        <div class="project-links"><a href="https://github.com/rabbihasanhimel/Garments_Factory_Management_System" target="_blank">GitHub →</a></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-tag">Computer Graphics</div>
+        <h3>Hardinge Bridge 3D Simulation</h3>
+        <p>3D graphical simulation of the iconic Hardinge Bridge using OpenGL and C++. Demonstrates scene construction, lighting, and real-time rendering techniques.</p>
+        <div class="project-techs"><span class="tech">C++</span><span class="tech">OpenGL</span><span class="tech">3D Graphics</span></div>
+        <div class="project-links"><a href="https://github.com/rabbihasanhimel/OpenGL-Project-Hardinge-Bridge" target="_blank">GitHub →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-num reveal">04</p>
+    <h2 class="section-title reveal">Professional Career</h2>
+    <div class="exp-list">
+      <div class="exp-item reveal">
+        <div class="exp-date">Aug 2026<br/>Sep 2026<br/>Ankara, Türkiye</div>
+        <div>
+          <div class="exp-company">SIBEREUM Türkiye</div>
+          <div class="exp-role">Cyber Security Consultant (Internship)</div>
+          <p class="exp-desc">Cybersecurity consulting internship focused on enterprise security assessment and advisory work in a professional consulting environment.</p>
+          <div class="exp-tags"><span class="tech">Cybersecurity</span><span class="tech">Consulting</span><span class="tech">Security Assessment</span></div>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-date">Apr 2024<br/>Aug 2025<br/>Dhaka, Bangladesh</div>
+        <div>
+          <div class="exp-company">Pearly Enterprise</div>
+          <div class="exp-role">Senior Import Export Manager</div>
+          <p class="exp-desc">Managed international supplier relationships and negotiated trade agreements across multiple markets. Led the internal IT division — providing technical training, troubleshooting, and team management. Handled end-to-end trade documentation and coordinated with customs agents and shipping partners.</p>
+          <div class="exp-tags"><span class="tech">Team Management</span><span class="tech">IT Operations</span><span class="tech">International Trade</span></div>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-date">Jan 2024<br/>Apr 2024<br/>Dhaka, Bangladesh</div>
+        <div>
+          <div class="exp-company">Bangladesh Telecommunication Company Limited (BTCL)</div>
+          <div class="exp-role">Information Systems Engineer (Internship)</div>
+          <p class="exp-desc">Provided IT support and network troubleshooting across ICX, PBX, and GPON infrastructure in a live national telecom environment. Worked with ZTE enterprise platforms (ZSMART, OSS, CRM). Assisted in IPv4/IPv6 diagnostics and maintained system logs and technical reports.</p>
+          <div class="exp-tags"><span class="tech">GPON</span><span class="tech">TCP/IP</span><span class="tech">ZTE Systems</span><span class="tech">Network Ops</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <p class="section-num reveal">05</p>
+    <h2 class="section-title reveal">Academic Path</h2>
+    <div class="edu-list">
+      <div class="edu-item reveal">
+        <div><div class="edu-inst">SRH Berlin University of Applied Sciences</div><div class="edu-deg">MSc in Applied Cybersecurity — EMJM CyberMACS, Year 2</div></div>
+        <div class="edu-date">2026 – 2027 · Berlin</div>
+      </div>
+      <div class="edu-item reveal">
+        <div><div class="edu-inst">Kadir Has University</div><div class="edu-deg">MSc in Applied Cybersecurity — EMJM CyberMACS, Year 1</div></div>
+        <div class="edu-date">2025 – 2026 · Istanbul</div>
+      </div>
+      <div class="edu-item reveal">
+        <div><div class="edu-inst">American International University-Bangladesh (AIUB)</div><div class="edu-deg">BSc in Computer Science and Engineering — CGPA: 3.72 / 4.00</div></div>
+        <div class="edu-date">2020 – 2024 · Dhaka</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS + CERTS -->
+<section id="publications">
+  <div class="container">
+    <p class="section-num reveal">06</p>
+    <h2 class="section-title reveal">Research & Credentials</h2>
+    <div class="pub-list">
+      <div class="pub-item reveal">
+        <div class="pub-title">Enhancing the Identification of Brain Tumours Using the CNN Ensemble Model</div>
+        <div class="pub-meta">RH Himel, MU Anando, S Tanjam · MJSAT, Vol.4, Is.3, pp.338–353 · Sep 2024 · <a href="https://doi.org/10.56532/mjsat.v4i3.264" target="_blank">DOI →</a></div>
+      </div>
+      <div class="pub-item reveal">
+        <div class="pub-title">Advancements in Brain Cancer Detection Using Machine Learning – A Comprehensive Review</div>
+        <div class="pub-meta">RH Himel, MU Anando, MH Adnan, A Rahman, AJ Shawon · IJRPR, Vol.5, Is.8, pp.913–920 · 2024 · <a href="https://doi.org/10.5281/zenodo.13939213" target="_blank">DOI →</a></div>
+      </div>
+      <div class="pub-item reveal">
+        <div class="pub-title">Bowen's Disease Detection Using VGG16: A Machine Learning Approach</div>
+        <div class="pub-meta">AJ Shawon, RH Himel, SM Ashikur Rahman, O Sing, R Mahmud · J. Eng. & Comp. Sciences, Vol.4, Is.7, pp.712–718 · 2025 · <a href="https://doi.org/10.5281/zenodo.16032382" target="_blank">DOI →</a></div>
+      </div>
+    </div>
+    <div style="margin-top:3.5rem">
+      <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:1.4rem;color:var(--text)">Industry Credentials</h3>
+      <div class="cert-list">
+        <div class="cert-item reveal">
+          <div><div class="cert-name">Cisco Certified Network Associate (CCNA)</div><div class="cert-meta">Cisco · May 2026 – May 2029 · ID: 469eb6d216604014aa1a934d419afbaa</div></div>
+          <span class="cert-badge">Valid</span>
+        </div>
+        <div class="cert-item reveal">
+          <div><div class="cert-name">SOC Level 1 Path Certificate</div><div class="cert-meta">TryHackMe LTD · Jun 2026 · ID: THM-KUEOIOXRND</div></div>
+          <span class="cert-badge">Certified</span>
+        </div>
+        <div class="cert-item reveal">
+          <div><div class="cert-name">Cybersecurity Compliance Framework, Standards & Regulations</div><div class="cert-meta">IBM via Coursera · Jul 2026 · <a href="https://coursera.org/verify/KGGWC2C7MU3" target="_blank">Verify →</a></div></div>
+          <span class="cert-badge">IBM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-num reveal">07</p>
+    <h2 class="section-title reveal">Let's Talk</h2>
+    <div class="contact-box reveal">
+      <h2>Open to cybersecurity, SOC, and research roles in Berlin.</h2>
+      <p>Whether you're hiring, researching, or want to talk security — I'm available from October 2026 in Berlin and open to remote opportunities now.</p>
+      <a href="mailto:rabbihasanhimel@gmail.com" class="contact-email">rabbihasanhimel@gmail.com</a>
+      <div class="contact-links">
+        <a href="https://linkedin.com/in/rabbi-hasan-himel" target="_blank" class="btn">LinkedIn</a>
+        <a href="https://github.com/rabbihasanhimel" target="_blank" class="btn btn-ghost">GitHub</a>
+        <a href="mailto:rabbihasanhimel@gmail.com" class="btn btn-ghost">Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Rabbi Hasan Himel &nbsp;·&nbsp; rabbihasanhimel@gmail.com</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
