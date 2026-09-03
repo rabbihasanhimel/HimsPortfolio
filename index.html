@@ -79,6 +79,9 @@
     .exp-company{font-size:15px;font-weight:600;color:var(--text);margin-bottom:.2rem}
     .exp-role{font-family:var(--mono);font-size:12px;color:var(--accent);margin-bottom:.6rem}
     .exp-desc{font-size:13.5px;color:var(--muted);line-height:1.7}
+    .exp-bullets{list-style:none;margin-top:.6rem;padding-left:0}
+    .exp-bullets li{font-size:13px;color:var(--muted);line-height:1.65;position:relative;padding-left:1.2rem;margin-bottom:.35rem}
+    .exp-bullets li::before{content:"▸";position:absolute;left:0;color:var(--accent)}
     .exp-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.8rem}
 
     .edu-list{display:flex;flex-direction:column;gap:1rem}
@@ -199,7 +202,7 @@
     <h2 class="section-title reveal">Capabilities</h2>
     <div class="skills-grid">
       <div class="skill-card reveal"><h4>IT Support & Networking</h4><ul><li>TCP/IP, DHCP, IPv4/IPv6, EIGRP</li><li>Windows & Linux Administration</li><li>Hardware/Software Troubleshooting</li><li>GPON, PBX, ICX Infrastructure</li><li>CCNA Certified</li></ul></div>
-      <div class="skill-card reveal"><h4>Security Operations</h4><ul><li>SIEM (Splunk, Elastic Stack)</li><li>Log Analysis & Alert Triage</li><li>Incident Response</li><li>MITRE ATT&CK, Cyber Kill Chain</li><li>Phishing Analysis, Threat Hunting</li></ul></div>
+      <div class="skill-card reveal"><h4>Security Operations</h4><ul><li>SIEM (Wazuh, Splunk, Elastic)</li><li>Log Analysis & Alert Triage</li><li>Incident Response</li><li>MITRE ATT&CK, Cyber Kill Chain</li><li>Phishing Analysis, Threat Hunting</li></ul></div>
       <div class="skill-card reveal"><h4>Cybersecurity & Compliance</h4><ul><li>ISMS Auditing, Risk Register</li><li>SoD Matrix, IAM</li><li>COBIT Framework</li><li>Compliance Auditing</li><li>Cyber Governance</li></ul></div>
       <div class="skill-card reveal"><h4>Machine Learning & AI</h4><ul><li>CNN, ANN, VGG16, XAI, RAG</li><li>TensorFlow, Keras, Scikit-learn</li><li>LangChain, ChromaDB</li><li>Pandas, NumPy, Matplotlib</li><li>Medical Image Classification</li></ul></div>
       <div class="skill-card reveal"><h4>Languages & Development</h4><ul><li>Python, PHP, C/C++</li><li>HTML/CSS, OpenGL</li><li>Git/GitHub</li><li>Oracle DB (OCI), MySQL</li><li>Selenium WebDriver</li></ul></div>
@@ -214,6 +217,13 @@
     <p class="section-num reveal">03</p>
     <h2 class="section-title reveal">Selected Work</h2>
     <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-tag">SOC / Detection Eng</div>
+        <h3>SOCForge – Enterprise SOC & IR Lab</h3>
+        <p>Architected an end-to-end detection engineering lab simulating 10 MITRE ATT&CK techniques across an isolated environment. Authored 6 custom Wazuh detection rules, eliminated OS false positives, and conducted CASE-001 forensic timeline investigation with complete artifact eradication.</p>
+        <div class="project-techs"><span class="tech">Wazuh SIEM</span><span class="tech">Sysmon</span><span class="tech">Kali Linux</span><span class="tech">MITRE ATT&CK</span><span class="tech">Incident Response</span></div>
+        <div class="project-links"><a href="https://github.com/rabbihasanhimel/SOCForge" target="_blank">GitHub →</a></div>
+      </div>
       <div class="project-card reveal">
         <div class="project-tag">AI / LLM</div>
         <h3>ChatbotPro – RAG Chatbot</h3>
@@ -257,8 +267,13 @@
         <div>
           <div class="exp-company">SIBEREUM Türkiye</div>
           <div class="exp-role">Cyber Security Consultant (Internship)</div>
-          <p class="exp-desc">Cybersecurity consulting internship focused on enterprise security assessment and advisory work in a professional consulting environment.</p>
-          <div class="exp-tags"><span class="tech">Cybersecurity</span><span class="tech">Consulting</span><span class="tech">Security Assessment</span></div>
+          <p class="exp-desc">Cybersecurity consulting internship focused on enterprise security assessment, governance, and advisory workflows:</p>
+          <ul class="exp-bullets">
+            <li>Assisted in enterprise ISMS auditing workflows, risk assessment methodologies, and cyber governance compliance reviews.</li>
+            <li>Evaluated Segregation of Duties (SoD) matrices and audited Identity and Access Management (IAM) role permissions.</li>
+            <li>Contributed to enterprise risk register maintenance, security controls evaluation, and client advisory reporting.</li>
+          </ul>
+          <div class="exp-tags"><span class="tech">ISMS Auditing</span><span class="tech">SoD Matrix</span><span class="tech">IAM</span><span class="tech">Risk Register</span><span class="tech">Cyber Governance</span></div>
         </div>
       </div>
       <div class="exp-item reveal">
